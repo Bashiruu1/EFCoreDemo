@@ -1,7 +1,9 @@
+using NodaTime;
+
 namespace EFCoreDemo.Models;
 
 public interface IEntity
 {
-    public DateTime CreationTime { get; set; }
-    public DateTime UpdatedTime { get; set; }
+    public Instant CreationTime { get; set; }
+    public Instant UpdatedTime { get; set; }
 }
