@@ -1,6 +1,6 @@
 using EFCoreDemo.Data;
+using EFCoreDemo.Services;
 using Microsoft.EntityFrameworkCore;
-using NodaTime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IClock, SystemClock>();
+builder.Services.AddSingleton<IClockService, ClockService>();
+builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddDbContext<BloggingContext>(options => {
     options
         .UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext"), o => o.UseNodaTime())
