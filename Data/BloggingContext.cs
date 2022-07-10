@@ -1,13 +1,13 @@
 using EFCoreDemo.Models;
+using EFCoreDemo.Services;
 using Microsoft.EntityFrameworkCore;
-using NodaTime;
 
 namespace EFCoreDemo.Data;
 
 public class BloggingContext : DbContext
 {
-    private readonly IClock _clock;
-    public BloggingContext(DbContextOptions options, IClock clock) : base(options) 
+    private readonly IClockService _clock;
+    public BloggingContext(DbContextOptions options, IClockService clock) : base(options) 
     {
         _clock = clock;
     }
@@ -21,7 +21,7 @@ public class BloggingContext : DbContext
         {
             if(changedEntity.Entity is IEntity entity)
             {
-                var now = _clock.GetCurrentInstant();
+                var now = _clock.Now;
                 switch(changedEntity.State)
                 {
                     case EntityState.Added:
