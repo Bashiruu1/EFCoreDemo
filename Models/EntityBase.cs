@@ -2,9 +2,9 @@ using NodaTime;
 
 namespace EFCoreDemo.Models;
 
-public abstract class EntityBase : IEntity
+public abstract class EntityBase
 {
-    public Guid Id { get; set; }
-    public virtual Instant CreationTime { get ; set; }
-    public virtual Instant UpdatedTime { get; set; }
+    public long Id { get; set; }
+    public Instant CreationTime { get ; set; }
+    public Instant UpdatedTime { get; set; }
 }
