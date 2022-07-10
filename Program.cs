@@ -13,8 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IClock, SystemClock>();
 builder.Services.AddDbContext<BloggingContext>(options => {
     options
-        //.UseNodaTime() Fix Me
-        .UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext"))
+        .UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext"), o => o.UseNodaTime())
         .UseSnakeCaseNamingConvention();
 });
 
