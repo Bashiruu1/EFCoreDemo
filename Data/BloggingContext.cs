@@ -11,6 +11,7 @@ public class BloggingContext : DbContext
     {
         _clock = clock;
     }
+    
     public DbSet<Blog>? Blogs { get; set; }
     public DbSet<Post>? Posts { get; set; }
 
