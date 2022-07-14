@@ -1,5 +1,6 @@
 using EFCoreDemo.Data;
-using EFCoreDemo.Models;
+using EFCoreDemo.Data.Entities;
+using EFCoreDemo.Data.Contexts;
 
 namespace EFCoreDemo.Services;
 

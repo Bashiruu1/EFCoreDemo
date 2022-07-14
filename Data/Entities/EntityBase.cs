@@ -1,6 +1,6 @@
 using NodaTime;
 
-namespace EFCoreDemo.Models;
+namespace EFCoreDemo.Data.Entities;
 
 public abstract class EntityBase
 {

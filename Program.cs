@@ -1,9 +1,11 @@
-using EFCoreDemo.Data;
+using EFCoreDemo.Data.Contexts;
+using EFCoreDemo.Data.Models;
 using EFCoreDemo.Services;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 var builder = WebApplication.CreateBuilder(args);
+var postgresDbSettings = builder.Configuration.GetSection(nameof(PostgresDbSettings)).Get<PostgresDbSettings>();
 
 // Add services to the container.
 
@@ -18,7 +20,7 @@ builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddDbContext<BloggingContext>(options => 
 {
     options
-        .UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext"), o => o.UseNodaTime().EnableRetryOnFailure())
+        .UseNpgsql(postgresDbSettings.ConnectionString, o => o.UseNodaTime().EnableRetryOnFailure())
         .UseSnakeCaseNamingConvention();
 }, ServiceLifetime.Transient);
 
