@@ -1,8 +1,8 @@
-using EFCoreDemo.Models;
+using EFCoreDemo.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
-namespace EFCoreDemo.Data;
+namespace EFCoreDemo.Data.Contexts;
 
 public class BloggingContext : DbContext
 {
@@ -19,7 +19,7 @@ public class BloggingContext : DbContext
     {
         foreach (var changedEntity in ChangeTracker.Entries())
         {
-            if(changedEntity.Entity is IEntity entity)
+            if(changedEntity.Entity is EntityBase entity)
             {
                 var now = _clock.GetCurrentInstant();
                 switch(changedEntity.State)
@@ -35,5 +35,11 @@ public class BloggingContext : DbContext
             }
         }
         return base.SaveChangesAsync(cancellationToken);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new Blog.Configuration());
+        modelBuilder.ApplyConfiguration(new Post.Configuration());
     }
 }
