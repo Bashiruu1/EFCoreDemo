@@ -38,6 +38,8 @@ builder.Services
     .AddQueryType<Query>()
     .AddType<BlogType>()
     .AddType<PostType>()
+    .AddFiltering()
+    .AddSorting()
     .AddProjections();
 
 var app = builder.Build();
