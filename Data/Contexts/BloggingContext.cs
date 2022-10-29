@@ -7,11 +7,11 @@ namespace EFCoreDemo.Data.Contexts;
 public class BloggingContext : DbContext
 {
     private readonly IClock _clock;
-    public BloggingContext(DbContextOptions options, IClock clock) : base(options) 
+    public BloggingContext(DbContextOptions options, IClock clock) : base(options)
     {
         _clock = clock;
     }
-    
+
     public DbSet<Blog>? Blogs { get; set; }
     public DbSet<Post>? Posts { get; set; }
 
@@ -19,10 +19,10 @@ public class BloggingContext : DbContext
     {
         foreach (var changedEntity in ChangeTracker.Entries())
         {
-            if(changedEntity.Entity is EntityBase entity)
+            if (changedEntity.Entity is EntityBase entity)
             {
-                var now = _clock.GetCurrentInstant();
-                switch(changedEntity.State)
+                var now = DateTime.UtcNow;
+                switch (changedEntity.State)
                 {
                     case EntityState.Added:
                         entity.CreationTime = now;

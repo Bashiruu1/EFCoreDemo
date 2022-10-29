@@ -7,8 +7,15 @@ Clone the repo installed the project dependencies setup your secret password and
 ```bash
 dotnet restore
 dotnet user-secrets init
-dotnet user-secrets set PostgresDbSettings:Password <insert-your-password-here>
+dotnet user-secrets set PostgresDbSettings:$insert_your_password_here
 docker-compose up
+```
+
+## Migrations
+
+```bash
+dotnet ef migrations add $insert_migration_here
+dotnet ef database update
 ```
 
 ## pgadmin4

@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using NodaTime;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace EFCoreDemo.Migrations
 {
-    public partial class InitialDbCreation : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,8 @@ namespace EFCoreDemo.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     url = table.Column<string>(type: "text", nullable: true),
-                    creation_time = table.Column<Instant>(type: "timestamp with time zone", nullable: false),
-                    updated_time = table.Column<Instant>(type: "timestamp with time zone", nullable: false)
+                    creation_time = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    updated_time = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,8 +34,8 @@ namespace EFCoreDemo.Migrations
                     title = table.Column<string>(type: "text", nullable: true),
                     content = table.Column<string>(type: "text", nullable: true),
                     blog_id = table.Column<long>(type: "bigint", nullable: false),
-                    creation_time = table.Column<Instant>(type: "timestamp with time zone", nullable: false),
-                    updated_time = table.Column<Instant>(type: "timestamp with time zone", nullable: false)
+                    creation_time = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    updated_time = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
